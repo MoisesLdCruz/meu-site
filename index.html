@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>.WBMASTER</title>
+  <title>Moises Cruz</title>
   <meta content="Site para venda de serviços, desenvolvimento de sites em WordPress" name="description">
   <meta content="Wordpress, sites, loja virtual" name="keywords">
 
@@ -370,7 +370,7 @@
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="box">
               <h3>Wordpress</h3>
-              <h4><sup>R$</sup>300,00<span>a partir de</span></h4>
+              <h4><sup>R$</sup>500,00<span>a partir de</span></h4>
               <ul>
                 <li><i class="bx bx-check"></i> Design Personalizado e Responsivo</li>
                 <li><i class="bx bx-check"></i> Painel Administrativo Fácil de Usar</li>
@@ -521,14 +521,14 @@
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Telefone:</h4>
-                <p>12 98171-5751</p>
+                <p>12 99122-8538</p>
               </div>
             </div>
 
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form  id="whatsapp-form"  action="forms/contact.ph" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Seu Nome:</label>
@@ -552,7 +552,7 @@
                 <div class="error-message"></div>
                 <div class="sent-message">Sua Mensagem foi enviada!</div>
               </div>
-              <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
+              <div class="text-center"><button id="send-btn" type="submit">Enviar Mensagem</button></div>
             </form>
           </div>
         </div>
@@ -569,9 +569,9 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>.WBMASTER</h3>
+            <h3>MoisésLdCruz</h3>
             <p>
-              <strong>Telefone:</strong>12 98171-5751<br>
+              <strong>Telefone:</strong>12 99122-8538<br>
               <strong>Email:</strong> sitewebmaster1@outlook.com<br>
             </p>
           </div>
@@ -654,8 +654,45 @@ if (!localStorage.getItem("cookiesAccepted")) {
         });
     }, 10000); // Exibir após 10 segundos
 }
+
+    document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('whatsapp-form');
+  const sendBtn = document.getElementById('send-btn');
+  const phoneNumber = '+5512991228538'; // Substitua pelo seu número de telefone com o código do país e DDD
+
+  sendBtn.addEventListener('click', function(event) {
+    // Impede o envio padrão do formulário
+    event.preventDefault();
+
+    // Captura os valores dos campos
+    const name = form.querySelector('#name').value;
+    const email = form.querySelector('#email').value;
+    const subject = form.querySelector('#subject').value;
+    const message = form.querySelector('textarea[name="message"]').value;
+
+    // Constrói a mensagem formatada
+    const formattedMessage = `
+*Nova Mensagem do Site!*
+---
+*Nome:* ${name}
+*Email:* ${email}
+*Assunto:* ${subject}
+*Mensagem:* ${message}
+    `;
+
+    // Codifica a mensagem para a URL
+    const encodedMessage = encodeURIComponent(formattedMessage);
+    
+    // Constrói a URL do WhatsApp
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    // Abre o WhatsApp em uma nova aba
+    window.open(whatsappURL, '_blank');
+  });
+});
   </script>
 
 </body>
 
 </html>
+
